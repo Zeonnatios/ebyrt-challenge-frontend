@@ -54,5 +54,10 @@
     "stylelint": "^14.0.1",
     "stylelint-config-standard": "^23.0.0",
     "stylelint-order": "^5.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
