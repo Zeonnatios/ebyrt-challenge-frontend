@@ -1,96 +1,82 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { setUser } from '../redux/actions';
-import '../style/style.css';
+import React, { useState, useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+import TasksContext from '../context/TasksContext';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      disabled: true,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.userValidation = this.userValidation.bind(this);
-  }
+function Login() {
+  const { login, setLogin } = useContext(TasksContext);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
-  handleChange({ target: { value, name } }) {
-    this.setState({
+  const handleChange = ({ target: { name, value } }) => {
+    setLogin({
+      ...login,
       [name]: value,
-    }, () => this.userValidation());
-  }
+    });
+  };
 
-  isValidEmail(email) {
-    const parseEmail = /^([a-z\d-]+)@([a-z\d-]+)\.([a-z]{2,8})$/;
+  const isValidEmail = (email) => {
+    const parseEmail = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
     return parseEmail.test(email);
-  }
+  };
 
-  isValidPassword(password) {
+  const isValidPassword = (password) => {
     const passwordLengthValidate = 6;
     return password.length >= passwordLengthValidate;
-  }
+  };
 
-  userValidation() {
-    const { email, password } = this.state;
+  useEffect(() => {
+    const { email, password } = login;
 
     if (isValidEmail(email) && isValidPassword(password)) {
-      this.setState({ disabled: false });
+      setDisabled(true);
     } else {
-      this.setState({ disabled: true });
+      setDisabled(false);
     }
-  }
+  }, [login]);
 
-  render() {
-    const { email, password, disabled } = this.state;
-    const { singIn } = this.props;
-    return (
-      <div className="form-container">
-        <form className="form">
-          <h2>Login</h2>
-          <hr />
-          <input
-            id="email"
-            className="input-field"
-            data-testid="email-input"
-            type="email"
-            name="email"
-            placeholder="Digite seu email aqui"
-            onChange={ this.handleChange }
-          />
-          <input
-            id="password"
-            className="input-field"
-            data-testid="password-input"
-            type="password"
-            name="password"
-            placeholder="Digite sua senha aqui"
-            onChange={ this.handleChange }
-          />
-          <hr />
-          <Link to="/carteira">
-            <button
-              className="button-login"
-              disabled={ disabled }
-              type="button"
-              onClick={ () => singIn({ email, password }) }
-            >
-              Entrar
-            </button>
-          </Link>
-        </form>
-      </div>);
-  }
+  const signIn = () => {
+    setShouldRedirect(true);
+  };
+
+  return (
+    <div className="form-container">
+      <form className="form">
+        <h2>Login</h2>
+        <hr />
+        <input
+          id="email"
+          className="input-field"
+          data-testid="email-input"
+          type="email"
+          name="email"
+          placeholder="Digite seu email aqui *"
+          onChange={ handleChange }
+        />
+        <input
+          id="password"
+          className="input-field"
+          data-testid="password-input"
+          type="password"
+          name="password"
+          placeholder="Digite sua senha aqui *"
+          onChange={ handleChange }
+        />
+        <small id="passwordHelpBlock" className="form-text text-muted">
+          Sua senha deve ter 6 números
+        </small>
+        <hr />
+
+        <button
+          className="button-login"
+          type="button"
+          disabled={ !disabled }
+          onClick={ signIn }
+        >
+          Entrar
+        </button>
+        {shouldRedirect ? <Redirect to="/todoList" /> : null}
+      </form>
+    </div>
+  );
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  singIn: (payload) => dispatch(setUser(payload)),
-});
-
-Login.propTypes = {
-  singIn: PropTypes.func.isRequired,
-};
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;
