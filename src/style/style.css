@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap') ;
+
+* {
+  border: 0;
+  box-sizing: border-box;
+  font-family: Lato , sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+
+  --font-color: black;
+
+  --light-color-1: #e8e8e8;
+
+  --light-color-2: #f7f5e6;
+
+  --dark-color-1: #52658f;
+
+  --dark-color-2: #333a56;
+
+  --background-gradient: linear-gradient(45deg, #333a56, #52658f);
+}
+
+.header {
+  align-items: center;
+  background: var(--background-gradient);
+  color: #e7dfdd;
+  display: flex;
+  flex-direction: row;
+  font-style: italic;
+  height: 15vh;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.header h1 {
+  font-weight: 700;
+  margin-left: 50px;
+}
+
+.user-info {
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 700;
+  justify-content: flex-end;
+}
+
+.user-info-container {
+  margin: 0 15px;
+}
+
+.user-info-container span {
+  margin: 0 5px;
+}
+
+.form-container {
+  align-items: center;
+  background: var(--background-gradient);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.form {
+  background-color: var(--light-color-2);
+  border-radius: 8px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-height: 60vh;
+  min-width: 40vw;
+  padding: 2rem;
+}
+
+.form h2 {
+  color: var(--dark-color-2);
+  font-size: 2.5rem;
+  font-style: italic;
+  font-weight: 700;
+  position: relative;
+}
+
+.form hr {
+  border: 3px var(--dark-color-1) solid;
+  border-radius: 10px;
+  margin: 0 0 10px;
+}
+
+.input-field {
+  border: 1px solid #ff0084;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin: 15px 0;
+  outline: none;
+  padding: 15px 10px;
+}
+
+.button-login {
+  background-color: #33001b;
+  border-radius: 8px;
+  color: #ff0084;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 15px 10px;
+  width: 100%;
+}
+
+.button-login:hover {
+  color: white;
+}
+
+.button-login:disabled {
+  background-color: #ddd;
+  cursor: auto;
+}
+
+.form-wallet {
+  align-items: center;
+  background-color: #0e0b16;
+  border-bottom: 1px solid #ff0084;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  min-height: 10vh;
+  min-width: 100vw;
+}
+
+.form-wallet-label {
+  color: #e7dfdd;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form-wallet-input-field {
+  background: white;
+  border: 1px solid #ff0084;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 10px;
+  outline: none;
+  padding: 5px;
+}
+
+.form-wallet-button-add-expense {
+  background-color: #ff0084;
+  color: #33001b;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.form-wallet-button-add-expense:hover {
+  color: white;
+}
+
+.form-wallet-button-edit-expense {
+  background-color: #33001b;
+  color: #ff0084;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.form-wallet-button-edit-expense:hover {
+  color: white;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100vw;
+}
+
+.thead {
+  background-color: #0e0b16;
+  color: #ff0084;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.thead th {
+  padding: 15px;
+}
+
+.tbody {
+  background-color: #4717f6;
+  color: #e7dfdd;
+  font-weight: 400;
+  height: 100%;
+  text-align: center;
+}
+
+.tbody td {
+  padding: 15px;
+}
+
+.tbody button {
+  background-color: #4717f6;
+}
+
+.tbody button img {
+  cursor: pointer;
+  width: 48px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
