@@ -6,8 +6,9 @@ import * as tasksAPI from '../services/tasksAPI';
 function TasksProvider({ children }) {
   const [login, setLogin] = useState({ email: '', password: '' });
   const [register, setRegister] = useState({ email: '', password: '', name: '' });
-  const [newTask, setNewTask] = useState({ task: '', description: '', status: '' });
+  const [inputTask, setInputTask] = useState({ task: '', description: '', status: '' });
   const [tasks, setTasks] = useState([]);
+  const [actionButton, setActionButton] = useState({ create: true, edit: false });
 
   const sortAlphabetical = async () => {
     if (tasks.length === 0) return;
@@ -30,6 +31,11 @@ function TasksProvider({ children }) {
     await setTasks(sortedTasks);
   };
 
+  const getTaskById = (id) => {
+    const data = [...tasks].find(({ _id }) => _id.toString() === id);
+    return data;
+  };
+
   const getAllTasks = async () => {
     const response = await tasksAPI.getAllTasks();
     setTasks(response);
@@ -37,6 +43,11 @@ function TasksProvider({ children }) {
 
   const createNewTask = async (body) => {
     await tasksAPI.createNewTask(body);
+    getAllTasks();
+  };
+
+  const updateTaskById = async (id, body) => {
+    await tasksAPI.updateTaskById(id, body);
     getAllTasks();
   };
 
@@ -54,8 +65,8 @@ function TasksProvider({ children }) {
     setLogin,
     register,
     setRegister,
-    newTask,
-    setNewTask,
+    inputTask,
+    setInputTask,
     tasks,
     setTasks,
     excludeTaskById,
@@ -63,6 +74,10 @@ function TasksProvider({ children }) {
     sortByCreatedDate,
     sortByStatus,
     createNewTask,
+    actionButton,
+    setActionButton,
+    getTaskById,
+    updateTaskById,
   };
 
   return (

@@ -5,8 +5,14 @@ import editImg from '../../images/edit.png';
 import deleteImg from '../../images/delete.png';
 
 function Table() {
-  const { tasks, excludeTaskById,
+  const { tasks, excludeTaskById, setActionButton, setInputTask, getTaskById,
     sortAlphabetical, sortByCreatedDate, sortByStatus } = useContext(TasksContext);
+
+  const setTaskToEdit = (id) => {
+    const data = getTaskById(id);
+    setInputTask(data);
+    setActionButton({ create: false, edit: true });
+  };
 
   const renderThead = () => (
     <thead className="thead">
@@ -44,9 +50,6 @@ function Table() {
     const parseDate = `${day}/${mounth}/${year} ${hours}:${minutes}`;
     return parseDate;
   };
-  const miliseconds = 1635964208551;
-
-  renderDate(miliseconds);
 
   const renderTbody = () => (
     <tbody className="tbody">
@@ -62,7 +65,7 @@ function Table() {
               <td>{parsedDate}</td>
               <td>
                 <div className="action-buttons">
-                  <button type="button">
+                  <button type="button" onClick={ () => setTaskToEdit(_id) }>
                     <img src={ editImg } alt="edit button" />
                   </button>
                   <button type="button" onClick={ () => excludeTaskById(_id) }>

@@ -2,19 +2,33 @@ import React, { useContext } from 'react';
 import TasksContext from '../../context/TasksContext';
 
 function Form() {
-  const { newTask, setNewTask, createNewTask } = useContext(TasksContext);
+  const { inputTask, setInputTask, createNewTask, updateTaskById,
+    actionButton, setActionButton } = useContext(TasksContext);
   const options = ['', 'pendente', 'em andamento', 'pronto'];
 
   const handleChange = ({ target: { name, value } }) => {
-    setNewTask({
-      ...newTask,
+    setInputTask({
+      ...inputTask,
       [name]: value,
     });
   };
 
-  const createHandle = (body) => {
+  const cancelOperation = () => {
+    setInputTask({ task: '', description: '', status: '' });
+    setActionButton({ create: true, edit: false });
+  };
+
+  const createTaskHandle = (body) => {
     createNewTask(body);
-    setNewTask({ task: '', description: '', status: '' });
+    setInputTask({ task: '', description: '', status: '' });
+    setActionButton({ create: true, edit: false });
+  };
+
+  const updateTaskHandle = (body) => {
+    const id = Object.values(body)[0];
+    updateTaskById(id, body);
+    setInputTask({ task: '', description: '', status: '' });
+    setActionButton({ create: true, edit: false });
   };
 
   return (
@@ -27,7 +41,7 @@ function Form() {
             type="text"
             id="task"
             name="task"
-            value={ newTask.task }
+            value={ inputTask.task }
             onChange={ handleChange }
           />
         </label>
@@ -40,7 +54,7 @@ function Form() {
             type="text"
             id="description"
             name="description"
-            value={ newTask.description }
+            value={ inputTask.description }
             onChange={ handleChange }
           />
         </label>
@@ -52,7 +66,7 @@ function Form() {
             className="form-task-input-field"
             id="status"
             name="status"
-            value={ newTask.status }
+            value={ inputTask.status }
             onChange={ handleChange }
           >
             {options.map((opt, index) => (
@@ -61,15 +75,41 @@ function Form() {
           </select>
         </label>
       </div>
-      <div>
-        <button
-          className="form-task-button-add-expense"
-          type="button"
-          onClick={ () => { createHandle(newTask); } }
-        >
-          Adicionar Tarefa
-        </button>
-      </div>
+
+      {actionButton.create
+        && (
+          <button
+            className="form-task-button-add-expense"
+            type="button"
+            onClick={ () => { createTaskHandle(inputTask); } }
+          >
+            Adicionar Tarefa
+          </button>
+        )}
+      {actionButton.edit
+        && (
+          <>
+            <div>
+              <button
+                className="form-task-button-edit-expense"
+                type="button"
+                onClick={ () => { updateTaskHandle(inputTask); } }
+              >
+                Salvar Tarefa
+              </button>
+            </div>
+            <div>
+              <button
+                className="form-task-button-cancel-expense"
+                type="button"
+                onClick={ cancelOperation }
+              >
+                Cancelar
+              </button>
+            </div>
+          </>
+        )}
+
     </form>
   );
 }
