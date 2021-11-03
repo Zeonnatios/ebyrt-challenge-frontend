@@ -225,3 +225,8 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.sort-Button {
+  cursor: pointer;
+  margin-left: 5px;
+}
