@@ -9,6 +9,13 @@ function TasksProvider({ children }) {
   const [newTask, setNewTask] = useState({ task: '', description: '', status: '' });
   const [tasks, setTasks] = useState([]);
 
+  const sortAlphabetical = async () => {
+    if (tasks.length === 0) return;
+
+    const sortedTasks = await [...tasks].sort((a, b) => a.task.localeCompare(b.task));
+    await setTasks(sortedTasks);
+  };
+
   const getAllTasks = async () => {
     const response = await tasksAPI.getAllTasks();
     setTasks(response);
@@ -33,6 +40,7 @@ function TasksProvider({ children }) {
     tasks,
     setTasks,
     excludeTaskById,
+    sortAlphabetical,
   };
 
   return (
