@@ -4,20 +4,25 @@ import TasksContext from './TasksContext';
 
 function TasksProvider({ children }) {
   const [login, setLogin] = useState({ email: '', password: '' });
-  const [register, setRegister] = useState(
-    {
-      email: '',
-      password: '',
-      name: '',
-      lastName: '',
-    },
-  );
+  const [register, setRegister] = useState({
+    email: '',
+    password: '',
+    name: '',
+    lastName: '',
+  });
+  const [newTask, setNewTask] = useState({
+    task: '',
+    description: '',
+    status: '',
+  });
 
   const context = {
     login,
     setLogin,
     register,
     setRegister,
+    newTask,
+    setNewTask,
   };
 
   return (

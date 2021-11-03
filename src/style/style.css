@@ -120,10 +120,20 @@
   cursor: auto;
 }
 
-.form-wallet {
+.header-icon {
+  color: var(--light-color-1);
+
+}
+
+.header-icon-logout:hover {
+  color: var(--light-color-2);
+  cursor: pointer;
+}
+
+.form-task {
   align-items: center;
-  background-color: #0e0b16;
-  border-bottom: 1px solid #ff0084;
+  background-color: var(--light-color-2);
+  border-bottom: 1px solid var(--dark-color-1);
   color: white;
   display: flex;
   justify-content: space-around;
@@ -131,15 +141,15 @@
   min-width: 100vw;
 }
 
-.form-wallet-label {
-  color: #e7dfdd;
-  font-size: 0.9rem;
+.form-task-label {
+  color: var(--font-color);
+  font-size: 1.3rem;
   font-weight: 500;
 }
 
-.form-wallet-input-field {
+.form-task-input-field {
   background: white;
-  border: 1px solid #ff0084;
+  border: 1px solid var(--dark-color-1);
   font-size: 0.9rem;
   font-weight: 500;
   margin: 10px;
@@ -147,30 +157,30 @@
   padding: 5px;
 }
 
-.form-wallet-button-add-expense {
-  background-color: #ff0084;
-  color: #33001b;
+.form-task-button-add-expense {
+  background-color: var(--dark-color-1);
+  color: var(--light-color-1);
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 700;
   padding: 10px;
 }
 
-.form-wallet-button-add-expense:hover {
-  color: white;
+.form-task-button-add-expense:hover {
+  color: var(--light-yellow);
 }
 
-.form-wallet-button-edit-expense {
-  background-color: #33001b;
-  color: #ff0084;
+.form-task-button-edit-expense {
+  background-color: var(--dark-color-1);
+  color: var(--light-color-1);
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 700;
   padding: 10px;
 }
 
-.form-wallet-button-edit-expense:hover {
-  color: white;
+.form-task-button-edit-expense:hover {
+  color: var(--light-yellow);
 }
 
 .table {
