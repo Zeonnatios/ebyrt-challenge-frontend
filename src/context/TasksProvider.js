@@ -15,6 +15,12 @@ function TasksProvider({ children }) {
     await setTasks(sortedTasks);
   };
 
+  const sortByStatus = async () => {
+    if (tasks.length === 0) return;
+    const sortedTasks = await [...tasks].sort((a, b) => a.status.localeCompare(b.status));
+    await setTasks(sortedTasks);
+  };
+
   const parseDate = (date) => new Date(date);
 
   const sortByCreatedDate = async () => {
@@ -50,6 +56,7 @@ function TasksProvider({ children }) {
     excludeTaskById,
     sortAlphabetical,
     sortByCreatedDate,
+    sortByStatus,
   };
 
   return (

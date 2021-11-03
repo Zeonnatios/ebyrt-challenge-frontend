@@ -6,7 +6,7 @@ import deleteImg from '../../images/delete.png';
 
 function Table() {
   const { tasks, excludeTaskById,
-    sortAlphabetical, sortByCreatedDate } = useContext(TasksContext);
+    sortAlphabetical, sortByCreatedDate, sortByStatus } = useContext(TasksContext);
 
   const renderThead = () => (
     <thead className="thead">
@@ -18,7 +18,7 @@ function Table() {
         <th>Descrição</th>
         <th>
           Status
-          <FaCaretDown className="sort-Button" />
+          <FaCaretDown className="sort-Button" onClick={ sortByStatus } />
         </th>
         <th>
           Data de Criação
