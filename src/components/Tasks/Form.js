@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import TasksContext from '../../context/TasksContext';
 
 function Form() {
-  const { newTask, setNewTask } = useContext(TasksContext);
+  const { newTask, setNewTask, createNewTask } = useContext(TasksContext);
   const options = ['', 'pendente', 'em andamento', 'pronto'];
 
   const handleChange = ({ target: { name, value } }) => {
@@ -10,6 +10,11 @@ function Form() {
       ...newTask,
       [name]: value,
     });
+  };
+
+  const createHandle = (body) => {
+    createNewTask(body);
+    setNewTask({ task: '', description: '', status: '' });
   };
 
   return (
@@ -60,6 +65,7 @@ function Form() {
         <button
           className="form-task-button-add-expense"
           type="button"
+          onClick={ () => { createHandle(newTask); } }
         >
           Adicionar Tarefa
         </button>

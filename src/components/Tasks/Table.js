@@ -42,7 +42,6 @@ function Table() {
     const hours = getTimeUnit(rawDate.getHours());
     const minutes = getTimeUnit(rawDate.getMinutes());
     const parseDate = `${day}/${mounth}/${year} ${hours}:${minutes}`;
-    console.log(parseDate);
     return parseDate;
   };
   const miliseconds = 1635964208551;

@@ -11,6 +11,10 @@ export const getAllTasks = async () => {
   return result;
 };
 
+export const createNewTask = async (body) => {
+  await api.post('tasks/', body).catch((err) => err);
+};
+
 export const excludeTaskById = async (id) => {
   await api.delete(`tasks/${id}`).catch((err) => err);
 };

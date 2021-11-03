@@ -35,6 +35,11 @@ function TasksProvider({ children }) {
     setTasks(response);
   };
 
+  const createNewTask = async (body) => {
+    await tasksAPI.createNewTask(body);
+    getAllTasks();
+  };
+
   const excludeTaskById = async (id) => {
     await tasksAPI.excludeTaskById(id);
     getAllTasks();
@@ -57,6 +62,7 @@ function TasksProvider({ children }) {
     sortAlphabetical,
     sortByCreatedDate,
     sortByStatus,
+    createNewTask,
   };
 
   return (
