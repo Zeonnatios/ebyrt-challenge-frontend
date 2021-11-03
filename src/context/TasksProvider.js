@@ -5,17 +5,8 @@ import * as tasksAPI from '../services/tasksAPI';
 
 function TasksProvider({ children }) {
   const [login, setLogin] = useState({ email: '', password: '' });
-  const [register, setRegister] = useState({
-    email: '',
-    password: '',
-    name: '',
-    lastName: '',
-  });
-  const [newTask, setNewTask] = useState({
-    task: '',
-    description: '',
-    status: '',
-  });
+  const [register, setRegister] = useState({ email: '', password: '', name: '' });
+  const [newTask, setNewTask] = useState({ task: '', description: '', status: '' });
   const [tasks, setTasks] = useState([]);
 
   const getAllTasks = async () => {

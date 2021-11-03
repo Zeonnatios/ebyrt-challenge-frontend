@@ -4,13 +4,12 @@ import TasksContext from '../context/TasksContext';
 
 function Login() {
   const history = useHistory();
-  const url = history.location.pathname;
-  const { login, setLogin } = useContext(TasksContext);
+  const { register, setRegister } = useContext(TasksContext);
   const [disabled, setDisabled] = useState(false);
 
   const handleChange = ({ target: { name, value } }) => {
-    setLogin({
-      ...login,
+    setRegister({
+      ...register,
       [name]: value,
     });
   };
@@ -25,25 +24,35 @@ function Login() {
     return password.length >= passwordLengthValidate;
   };
 
-  useEffect(() => {
-    const { email, password } = login;
+  const isValidName = (name) => name !== null || name !== undefined || name !== '';
 
-    if (isValidEmail(email) && isValidPassword(password)) {
+  useEffect(() => {
+    const { email, password, name } = register;
+
+    if (isValidEmail(email) && isValidPassword(password) && isValidName(name)) {
       setDisabled(true);
     } else {
       setDisabled(false);
     }
-  }, [login]);
+  }, [register]);
 
   return (
     <div className="form-container">
       <form className="form">
-        <h2>Login</h2>
-        <hr className="form-hr" />
+        <h2>Criar conta</h2>
+        <hr />
+        <input
+          id="name"
+          className="input-field"
+          data-testid="email-input"
+          type="text"
+          name="name"
+          placeholder="Digite seu nome aqui *"
+          onChange={ handleChange }
+        />
         <input
           id="email"
           className="input-field"
-          data-testid="email-input"
           type="email"
           name="email"
           placeholder="Digite seu email aqui *"
@@ -52,7 +61,6 @@ function Login() {
         <input
           id="password"
           className="input-field"
-          data-testid="password-input"
           type="password"
           name="password"
           placeholder="Digite sua senha aqui *"
@@ -62,15 +70,15 @@ function Login() {
         <small id="passwordHelpBlock" className="form-text text-muted">
           Sua senha deve ter 6 números
         </small>
-        <hr className="form-hr" />
+        <hr />
 
         <button
           className="button-login"
           type="button"
           disabled={ !disabled }
-          onClick={ () => history.push(`${url}tasks`) }
+          onClick={ () => console.log(history) }
         >
-          Entrar
+          Salvar
         </button>
 
         <hr />
@@ -78,9 +86,9 @@ function Login() {
         <button
           className="button-login"
           type="button"
-          onClick={ () => history.push(`${url}register`) }
+          onClick={ () => history.push('/') }
         >
-          Cadastrar-se
+          Voltar
         </button>
 
       </form>

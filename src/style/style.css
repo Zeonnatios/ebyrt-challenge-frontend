@@ -85,7 +85,7 @@
   position: relative;
 }
 
-.form hr {
+.form-hr {
   border: 3px var(--dark-color-1) solid;
   border-radius: 10px;
   margin: 0 0 10px;
@@ -95,7 +95,7 @@
   border: 1px solid var(--dark-color-1);
   border-radius: 8px;
   font-size: 1rem;
-  margin: 15px 0;
+  margin: 10px 0;
   outline: none;
   padding: 15px 10px;
 }
