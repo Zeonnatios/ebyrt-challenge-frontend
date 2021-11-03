@@ -126,7 +126,7 @@
 }
 
 .header-icon-logout:hover {
-  color: var(--light-color-2);
+  color: var(--light-yellow);
   cursor: pointer;
 }
 
@@ -189,8 +189,8 @@
 }
 
 .thead {
-  background-color: #0e0b16;
-  color: #ff0084;
+  background-color: var(--light-color-2);
+  color: var(--font-color);
   font-size: 1.2rem;
   font-weight: 900;
   text-align: center;
@@ -201,8 +201,8 @@
 }
 
 .tbody {
-  background-color: #4717f6;
-  color: #e7dfdd;
+  background-color: var(--light-color-1);
+  color: var(--dark-color-2);
   font-weight: 400;
   height: 100%;
   text-align: center;
@@ -213,15 +213,15 @@
 }
 
 .tbody button {
-  background-color: #4717f6;
+  background-color: var(--light-color-1);
 }
 
 .tbody button img {
   cursor: pointer;
-  width: 48px;
+  width: 32px;
 }
 
 .action-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
