@@ -5,7 +5,8 @@ import editImg from '../../images/edit.png';
 import deleteImg from '../../images/delete.png';
 
 function Table() {
-  const { tasks, excludeTaskById, sortAlphabetical } = useContext(TasksContext);
+  const { tasks, excludeTaskById,
+    sortAlphabetical, sortByCreatedDate } = useContext(TasksContext);
 
   const renderThead = () => (
     <thead className="thead">
@@ -21,24 +22,45 @@ function Table() {
         </th>
         <th>
           Data de Criação
-          <FaCaretDown className="sort-Button" />
+          <FaCaretDown className="sort-Button" onClick={ sortByCreatedDate } />
         </th>
         <th>Editar/Excluir</th>
       </tr>
     </thead>
   );
 
+  const getTimeUnit = (unit) => {
+    const limit = 10;
+    return unit < limit ? `0${unit}` : unit;
+  };
+
+  const renderDate = (date) => {
+    const rawDate = new Date(date);
+    const day = rawDate.getDate();
+    const mounth = rawDate.getMonth() + 1;
+    const year = rawDate.getFullYear();
+    const hours = getTimeUnit(rawDate.getHours());
+    const minutes = getTimeUnit(rawDate.getMinutes());
+    const parseDate = `${day}/${mounth}/${year} ${hours}:${minutes}`;
+    console.log(parseDate);
+    return parseDate;
+  };
+  const miliseconds = 1635964208551;
+
+  renderDate(miliseconds);
+
   const renderTbody = () => (
     <tbody className="tbody">
       {
         tasks.map((t, index) => {
           const { _id, task, description, status, createdDate } = t;
+          const parsedDate = renderDate(createdDate);
           return (
             <tr key={ index }>
               <td>{task}</td>
               <td>{description}</td>
               <td>{status}</td>
-              <td>{createdDate}</td>
+              <td>{parsedDate}</td>
               <td>
                 <div className="action-buttons">
                   <button type="button">
