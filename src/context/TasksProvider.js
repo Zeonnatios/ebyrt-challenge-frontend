@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import TasksContext from './TasksContext';
+import * as tasksAPI from '../services/tasksAPI';
 
 function TasksProvider({ children }) {
   const [login, setLogin] = useState({ email: '', password: '' });
@@ -15,6 +16,16 @@ function TasksProvider({ children }) {
     description: '',
     status: '',
   });
+  const [tasks, setTasks] = useState([]);
+
+  const getAllTasks = async () => {
+    const response = await tasksAPI.fetchAllTasks();
+    setTasks(response);
+  };
+
+  useEffect(() => {
+    getAllTasks();
+  }, []);
 
   const context = {
     login,
@@ -23,6 +34,8 @@ function TasksProvider({ children }) {
     setRegister,
     newTask,
     setNewTask,
+    tasks,
+    setTasks,
   };
 
   return (
