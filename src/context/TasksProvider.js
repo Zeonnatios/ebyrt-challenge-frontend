@@ -10,8 +10,13 @@ function TasksProvider({ children }) {
   const [tasks, setTasks] = useState([]);
 
   const getAllTasks = async () => {
-    const response = await tasksAPI.fetchAllTasks();
+    const response = await tasksAPI.getAllTasks();
     setTasks(response);
+  };
+
+  const excludeTaskById = async (id) => {
+    await tasksAPI.excludeTaskById(id);
+    getAllTasks();
   };
 
   useEffect(() => {
@@ -27,6 +32,7 @@ function TasksProvider({ children }) {
     setNewTask,
     tasks,
     setTasks,
+    excludeTaskById,
   };
 
   return (

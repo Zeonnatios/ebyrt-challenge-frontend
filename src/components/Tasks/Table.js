@@ -4,7 +4,8 @@ import editImg from '../../images/edit.png';
 import deleteImg from '../../images/delete.png';
 
 function Table() {
-  const { tasks } = useContext(TasksContext);
+  const { tasks, excludeTaskById } = useContext(TasksContext);
+
   const renderThead = () => (
     <thead className="thead">
       <tr>
@@ -22,11 +23,11 @@ function Table() {
       {renderThead()}
       <tbody className="tbody">
         {
-          tasks.map((task) => {
-            const { _id, title, description, status, createdDate } = task;
+          tasks.map((t) => {
+            const { _id, task, description, status, createdDate } = t;
             return (
               <tr key={ _id }>
-                <td>{title}</td>
+                <td>{task}</td>
                 <td>{description}</td>
                 <td>{status}</td>
                 <td>{createdDate}</td>
@@ -35,7 +36,7 @@ function Table() {
                     <button type="button">
                       <img src={ editImg } alt="edit" />
                     </button>
-                    <button type="button">
+                    <button type="button" onClick={ () => excludeTaskById(_id) }>
                       <img src={ deleteImg } alt="delete" />
                     </button>
                   </div>

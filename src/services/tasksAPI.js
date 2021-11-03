@@ -1,13 +1,16 @@
-export const fetchAllTasks = () => {
-  const endpoint = 'http://localhost:3000/tasks/';
-  return fetch(endpoint)
-    .then((response) => response.json())
-    .then((data) => data);
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'http://localhost:3000/',
+});
+
+export const getAllTasks = async () => {
+  const result = await api.get('tasks')
+    .then((response) => response.data)
+    .catch((err) => err);
+  return result;
 };
 
-export const postTask = () => {
-  const endpoint = 'http://localhost:3000/tasks/asd';
-  return fetch(endpoint)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+export const excludeTaskById = async (id) => {
+  await api.delete(`tasks/${id}`).catch((err) => err);
 };
