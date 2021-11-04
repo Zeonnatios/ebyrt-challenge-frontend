@@ -4,8 +4,6 @@ import TasksContext from './TasksContext';
 import * as tasksAPI from '../services/tasksAPI';
 
 function TasksProvider({ children }) {
-  const [login, setLogin] = useState({ email: '', password: '' });
-  const [register, setRegister] = useState({ email: '', password: '', name: '' });
   const [inputTask, setInputTask] = useState({ task: '', description: '', status: '' });
   const [tasks, setTasks] = useState([]);
   const [actionButton, setActionButton] = useState({ create: true, edit: false });
@@ -80,10 +78,6 @@ function TasksProvider({ children }) {
   }, []);
 
   const context = {
-    login,
-    setLogin,
-    register,
-    setRegister,
     inputTask,
     setInputTask,
     tasks,
