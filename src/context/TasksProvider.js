@@ -10,24 +10,43 @@ function TasksProvider({ children }) {
   const [tasks, setTasks] = useState([]);
   const [actionButton, setActionButton] = useState({ create: true, edit: false });
 
-  const sortAlphabetical = async () => {
+  const sortAlphabeticalAsc = async () => {
     if (tasks.length === 0) return;
     const sortedTasks = await [...tasks].sort((a, b) => a.task.localeCompare(b.task));
     await setTasks(sortedTasks);
   };
 
-  const sortByStatus = async () => {
+  const sortAlphabeticalDesc = async () => {
+    if (tasks.length === 0) return;
+    const sortedTasks = await [...tasks].sort((a, b) => b.task.localeCompare(a.task));
+    await setTasks(sortedTasks);
+  };
+
+  const sortByStatusAsc = async () => {
     if (tasks.length === 0) return;
     const sortedTasks = await [...tasks].sort((a, b) => a.status.localeCompare(b.status));
     await setTasks(sortedTasks);
   };
 
+  const sortByStatusDesc = async () => {
+    if (tasks.length === 0) return;
+    const sortedTasks = await [...tasks].sort((a, b) => b.status.localeCompare(a.status));
+    await setTasks(sortedTasks);
+  };
+
   const parseDate = (date) => new Date(date);
 
-  const sortByCreatedDate = async () => {
+  const sortByCreatedDateAsc = async () => {
     if (tasks.length === 0) return;
     const sortedTasks = await [...tasks].sort((a, b) => (parseDate(a.createdDate)
     - parseDate(b.createdDate)));
+    await setTasks(sortedTasks);
+  };
+
+  const sortByCreatedDateDesc = async () => {
+    if (tasks.length === 0) return;
+    const sortedTasks = await [...tasks].sort((a, b) => (parseDate(b.createdDate)
+    - parseDate(a.createdDate)));
     await setTasks(sortedTasks);
   };
 
@@ -70,9 +89,12 @@ function TasksProvider({ children }) {
     tasks,
     setTasks,
     excludeTaskById,
-    sortAlphabetical,
-    sortByCreatedDate,
-    sortByStatus,
+    sortAlphabeticalAsc,
+    sortByCreatedDateAsc,
+    sortByStatusAsc,
+    sortAlphabeticalDesc,
+    sortByCreatedDateDesc,
+    sortByStatusDesc,
     createNewTask,
     actionButton,
     setActionButton,

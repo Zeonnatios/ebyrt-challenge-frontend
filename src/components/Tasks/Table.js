@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
-import { FaCaretDown } from 'react-icons/fa';
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import TasksContext from '../../context/TasksContext';
 import editImg from '../../images/edit.png';
 import deleteImg from '../../images/delete.png';
 
 function Table() {
   const { tasks, excludeTaskById, setActionButton, setInputTask, getTaskById,
-    sortAlphabetical, sortByCreatedDate, sortByStatus } = useContext(TasksContext);
+    sortAlphabeticalAsc, sortByCreatedDateAsc, sortByStatusAsc,
+    sortAlphabeticalDesc, sortByCreatedDateDesc, sortByStatusDesc,
+  } = useContext(TasksContext);
 
   const setTaskToEdit = (id) => {
     const data = getTaskById(id);
@@ -18,17 +20,20 @@ function Table() {
     <thead className="thead">
       <tr>
         <th>
+          <FaCaretUp className="sort-Button" onClick={ sortAlphabeticalDesc } />
           Tarefa
-          <FaCaretDown className="sort-Button" onClick={ sortAlphabetical } />
+          <FaCaretDown className="sort-Button" onClick={ sortAlphabeticalAsc } />
         </th>
         <th>Descrição</th>
         <th>
+          <FaCaretUp className="sort-Button" onClick={ sortByStatusDesc } />
           Status
-          <FaCaretDown className="sort-Button" onClick={ sortByStatus } />
+          <FaCaretDown className="sort-Button" onClick={ sortByStatusAsc } />
         </th>
         <th>
+          <FaCaretUp className="sort-Button" onClick={ sortByCreatedDateDesc } />
           Data de Criação
-          <FaCaretDown className="sort-Button" onClick={ sortByCreatedDate } />
+          <FaCaretDown className="sort-Button" onClick={ sortByCreatedDateAsc } />
         </th>
         <th>Editar/Excluir</th>
       </tr>
