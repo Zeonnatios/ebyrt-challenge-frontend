@@ -1,13 +1,24 @@
-export const fetchAllTasks = () => {
-  const endpoint = 'http://localhost:3000/tasks/';
-  return fetch(endpoint)
-    .then((response) => response.json())
-    .then((data) => data);
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
+
+export const getAllTasks = async () => {
+  const result = await api.get('tasks')
+    .then((response) => response.data)
+    .catch((err) => err);
+  return result;
 };
 
-export const postTask = () => {
-  const endpoint = 'http://localhost:3000/tasks/asd';
-  return fetch(endpoint)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+export const createNewTask = async (body) => {
+  await api.post('tasks/', body).catch((err) => err);
+};
+
+export const updateTaskById = async (id, body) => {
+  await api.put(`tasks/${id}`, body).catch((err) => console.log({ err }));
+};
+
+export const excludeTaskById = async (id) => {
+  await api.delete(`tasks/${id}`).catch((err) => err);
 };

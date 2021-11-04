@@ -22,6 +22,9 @@
 
   --dark-color-2: #333a56;
 
+  --cancel: #f23b1c;
+
+
   --background-gradient: linear-gradient(45deg, #333a56, #52658f);
 }
 
@@ -183,6 +186,19 @@
   color: var(--light-yellow);
 }
 
+.form-task-button-cancel-expense {
+  background-color: var(--cancel);
+  color: var(--light-color-1);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.form-task-button-cancel-expense:hover {
+  color: var(--light-yellow);
+}
+
 .table {
   border-collapse: collapse;
   width: 100vw;
@@ -224,4 +240,9 @@
 .action-buttons {
   display: flex;
   justify-content: space-evenly;
+}
+
+.sort-Button {
+  cursor: pointer;
+  margin-left: 5px;
 }
