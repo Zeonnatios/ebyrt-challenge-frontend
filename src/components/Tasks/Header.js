@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import { FaUserCircle, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserCircle } from 'react-icons/fa';
 
 function Header() {
   return (
@@ -11,11 +10,6 @@ function Header() {
         <div className="user-info-container">
           <FaUserCircle className="header-icon" size="32" />
           <span>Super User</span>
-        </div>
-        <div className="user-info-container">
-          <Link to="/">
-            <FaSignOutAlt className="header-icon header-icon-logout" size="32" />
-          </Link>
         </div>
       </div>
     </header>
