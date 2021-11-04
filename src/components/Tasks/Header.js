@@ -10,7 +10,7 @@ function Header() {
       <div className="user-info">
         <div className="user-info-container">
           <FaUserCircle className="header-icon" size="32" />
-          <span>userName</span>
+          <span>Super User</span>
         </div>
         <div className="user-info-container">
           <Link to="/">
