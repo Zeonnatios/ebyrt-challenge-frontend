@@ -5,7 +5,8 @@ const api = axios.create({
 });
 
 export const getAllTasks = async () => {
-  const result = await api.get('tasks')
+  const result = await api
+    .get('tasks')
     .then((response) => response.data)
     .catch((err) => err);
   return result;
@@ -16,7 +17,7 @@ export const createNewTask = async (body) => {
 };
 
 export const updateTaskById = async (id, body) => {
-  await api.put(`tasks/${id}`, body).catch((err) => console.log({ err }));
+  await api.put(`tasks/${id}`, body).catch((err) => err);
 };
 
 export const excludeTaskById = async (id) => {

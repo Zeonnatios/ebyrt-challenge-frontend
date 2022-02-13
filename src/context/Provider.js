@@ -5,49 +5,62 @@ import * as tasksAPI from '../services/tasksAPI';
 
 function TasksProvider({ children }) {
   const [login, setLogin] = useState({ email: '', password: '' });
-  const [register, setRegister] = useState({ email: '', password: '', name: '' });
-  const [inputTask, setInputTask] = useState({ task: '', description: '', status: '' });
+  const [register, setRegister] = useState({
+    email: '',
+    password: '',
+    name: '',
+  });
+  const [inputTask, setInputTask] = useState({
+    task: '',
+    description: '',
+    status: '',
+  });
   const [tasks, setTasks] = useState([]);
-  const [actionButton, setActionButton] = useState({ create: true, edit: false });
+  const [actionButton, setActionButton] = useState({
+    create: true,
+    edit: false,
+  });
 
   const sortAlphabeticalAsc = async () => {
     if (tasks.length === 0) return;
     const sortedTasks = await [...tasks].sort((a, b) => a.task.localeCompare(b.task));
-    await setTasks(sortedTasks);
+    setTasks(sortedTasks);
   };
 
   const sortAlphabeticalDesc = async () => {
     if (tasks.length === 0) return;
     const sortedTasks = await [...tasks].sort((a, b) => b.task.localeCompare(a.task));
-    await setTasks(sortedTasks);
+    setTasks(sortedTasks);
   };
 
   const sortByStatusAsc = async () => {
     if (tasks.length === 0) return;
     const sortedTasks = await [...tasks].sort((a, b) => a.status.localeCompare(b.status));
-    await setTasks(sortedTasks);
+    setTasks(sortedTasks);
   };
 
   const sortByStatusDesc = async () => {
     if (tasks.length === 0) return;
     const sortedTasks = await [...tasks].sort((a, b) => b.status.localeCompare(a.status));
-    await setTasks(sortedTasks);
+    setTasks(sortedTasks);
   };
 
   const parseDate = (date) => new Date(date);
 
   const sortByCreatedDateAsc = async () => {
     if (tasks.length === 0) return;
-    const sortedTasks = await [...tasks].sort((a, b) => (parseDate(a.createdDate)
-    - parseDate(b.createdDate)));
-    await setTasks(sortedTasks);
+    const sortedTasks = await [...tasks].sort(
+      (a, b) => parseDate(a.createdDate) - parseDate(b.createdDate),
+    );
+    setTasks(sortedTasks);
   };
 
   const sortByCreatedDateDesc = async () => {
     if (tasks.length === 0) return;
-    const sortedTasks = await [...tasks].sort((a, b) => (parseDate(b.createdDate)
-    - parseDate(a.createdDate)));
-    await setTasks(sortedTasks);
+    const sortedTasks = await [...tasks].sort(
+      (a, b) => parseDate(b.createdDate) - parseDate(a.createdDate),
+    );
+    setTasks(sortedTasks);
   };
 
   const getTaskById = (id) => {
@@ -79,6 +92,7 @@ function TasksProvider({ children }) {
     getAllTasks();
   }, []);
 
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const context = {
     login,
     setLogin,
@@ -102,11 +116,7 @@ function TasksProvider({ children }) {
     updateTaskById,
   };
 
-  return (
-    <Context.Provider value={ context }>
-      { children }
-    </Context.Provider>
-  );
+  return <Context.Provider value={context}>{children}</Context.Provider>;
 }
 
 TasksProvider.propTypes = {

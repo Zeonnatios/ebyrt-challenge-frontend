@@ -2,8 +2,14 @@ import React, { useContext } from 'react';
 import Context from '../../context/Context';
 
 function Form() {
-  const { inputTask, setInputTask, createNewTask, updateTaskById,
-    actionButton, setActionButton } = useContext(Context);
+  const {
+    inputTask,
+    setInputTask,
+    createNewTask,
+    updateTaskById,
+    actionButton,
+    setActionButton,
+  } = useContext(Context);
   const options = ['', 'pendente', 'em andamento', 'pronto'];
 
   const handleChange = ({ target: { name, value } }) => {
@@ -41,8 +47,8 @@ function Form() {
             type="text"
             id="task"
             name="task"
-            value={ inputTask.task }
-            onChange={ handleChange }
+            value={inputTask.task}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -54,8 +60,8 @@ function Form() {
             type="text"
             id="description"
             name="description"
-            value={ inputTask.description }
-            onChange={ handleChange }
+            value={inputTask.description}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -66,50 +72,53 @@ function Form() {
             className="form-task-input-field"
             id="status"
             name="status"
-            value={ inputTask.status }
-            onChange={ handleChange }
+            value={inputTask.status}
+            onChange={handleChange}
           >
-            {options.map((opt, index) => (
-              <option key={ index } value={ opt }>{opt}</option>
+            {options.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
             ))}
           </select>
         </label>
       </div>
 
-      {actionButton.create
-        && (
-          <button
-            className="form-task-button-add-expense"
-            type="button"
-            onClick={ () => { createTaskHandle(inputTask); } }
-          >
-            Adicionar Tarefa
-          </button>
-        )}
-      {actionButton.edit
-        && (
-          <>
-            <div>
-              <button
-                className="form-task-button-edit-expense"
-                type="button"
-                onClick={ () => { updateTaskHandle(inputTask); } }
-              >
-                Salvar Tarefa
-              </button>
-            </div>
-            <div>
-              <button
-                className="form-task-button-cancel-expense"
-                type="button"
-                onClick={ cancelOperation }
-              >
-                Cancelar
-              </button>
-            </div>
-          </>
-        )}
-
+      {actionButton.create && (
+        <button
+          className="form-task-button-add-expense"
+          type="button"
+          onClick={() => {
+            createTaskHandle(inputTask);
+          }}
+        >
+          Adicionar Tarefa
+        </button>
+      )}
+      {actionButton.edit && (
+        <>
+          <div>
+            <button
+              className="form-task-button-edit-expense"
+              type="button"
+              onClick={() => {
+                updateTaskHandle(inputTask);
+              }}
+            >
+              Salvar Tarefa
+            </button>
+          </div>
+          <div>
+            <button
+              className="form-task-button-cancel-expense"
+              type="button"
+              onClick={cancelOperation}
+            >
+              Cancelar
+            </button>
+          </div>
+        </>
+      )}
     </form>
   );
 }
