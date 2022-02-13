@@ -9,7 +9,7 @@ function Header() {
           <span>Developed by:</span>
         </div>
         <div className="user-info-container">
-          <span>Matheus Zeonnatios Antonio</span>
+          <span>Matheus &quot;Zeonnatios&quot; Antonio</span>
         </div>
       </div>
     </header>
