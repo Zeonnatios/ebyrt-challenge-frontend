@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
-import TasksContext from '../../context/TasksContext';
+import Context from '../../context/Context';
 import editImg from '../../images/edit.png';
 import deleteImg from '../../images/delete.png';
 
@@ -8,7 +8,7 @@ function Table() {
   const { tasks, excludeTaskById, setActionButton, setInputTask, getTaskById,
     sortAlphabeticalAsc, sortByCreatedDateAsc, sortByStatusAsc,
     sortAlphabeticalDesc, sortByCreatedDateDesc, sortByStatusDesc,
-  } = useContext(TasksContext);
+  } = useContext(Context);
 
   const setTaskToEdit = (id) => {
     const data = getTaskById(id);

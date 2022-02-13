@@ -1,12 +1,13 @@
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
-import { TodoList } from './pages/index';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import TodoList from './pages/TodoList';
 
 function routes() {
   return (
     <BrowserRouter>
-      <Route exact path="/" component={ TodoList } />
-
+      <Routes>
+        <Route path="/" element={<TodoList />} />
+      </Routes>
     </BrowserRouter>
   );
 }

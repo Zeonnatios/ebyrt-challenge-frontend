@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import TasksContext from '../../context/TasksContext';
+import Context from '../../context/Context';
 
 function Form() {
   const { inputTask, setInputTask, createNewTask, updateTaskById,
-    actionButton, setActionButton } = useContext(TasksContext);
+    actionButton, setActionButton } = useContext(Context);
   const options = ['', 'pendente', 'em andamento', 'pronto'];
 
   const handleChange = ({ target: { name, value } }) => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import TasksContext from './TasksContext';
+import Context from './Context';
 import * as tasksAPI from '../services/tasksAPI';
 
 function TasksProvider({ children }) {
@@ -103,9 +103,9 @@ function TasksProvider({ children }) {
   };
 
   return (
-    <TasksContext.Provider value={ context }>
+    <Context.Provider value={ context }>
       { children }
-    </TasksContext.Provider>
+    </Context.Provider>
   );
 }
 
