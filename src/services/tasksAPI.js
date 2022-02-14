@@ -12,7 +12,7 @@ export const getAllTasks = async () => {
   return result;
 };
 
-export const createNewTask = async (body) => {
+export const postTask = async (body) => {
   await api.post('tasks/', body).catch((err) => err);
 };
 
@@ -20,6 +20,6 @@ export const updateTaskById = async (id, body) => {
   await api.put(`tasks/${id}`, body).catch((err) => err);
 };
 
-export const excludeTaskById = async (id) => {
+export const deleteTaskById = async (id) => {
   await api.delete(`tasks/${id}`).catch((err) => err);
 };

@@ -74,7 +74,7 @@ function TasksProvider({ children }) {
   };
 
   const createNewTask = async (body) => {
-    await tasksAPI.createNewTask(body);
+    await tasksAPI.postTask(body);
     getAllTasks();
   };
 
@@ -84,7 +84,7 @@ function TasksProvider({ children }) {
   };
 
   const excludeTaskById = async (id) => {
-    await tasksAPI.excludeTaskById(id);
+    await tasksAPI.deleteTaskById(id);
     getAllTasks();
   };
 

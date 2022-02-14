@@ -74,16 +74,24 @@ function Table() {
         const parsedDate = renderDate(createdDate);
         return (
           <tr key={_id}>
-            <td>{task}</td>
-            <td>{description}</td>
-            <td>{status}</td>
-            <td>{parsedDate}</td>
+            <td data-testid="data-task">{task}</td>
+            <td data-testid="data-description">{description}</td>
+            <td data-testid="data-status">{status}</td>
+            <td data-testid="data-createdDate">{parsedDate}</td>
             <td>
               <div className="action-buttons">
-                <button type="button" onClick={() => setTaskToEdit(_id)}>
+                <button
+                  type="button"
+                  onClick={() => setTaskToEdit(_id)}
+                  data-testid="data-button-edit"
+                >
                   <img src={editImg} alt="edit button" />
                 </button>
-                <button type="button" onClick={() => excludeTaskById(_id)}>
+                <button
+                  type="button"
+                  onClick={() => excludeTaskById(_id)}
+                  data-testid="data-button-delete"
+                >
                   <img src={deleteImg} alt="exclude button" />
                 </button>
               </div>

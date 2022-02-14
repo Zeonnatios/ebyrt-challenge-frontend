@@ -49,6 +49,7 @@ function Form() {
             name="task"
             value={inputTask.task}
             onChange={handleChange}
+            data-testid="input-task"
           />
         </label>
       </div>
@@ -62,6 +63,7 @@ function Form() {
             name="description"
             value={inputTask.description}
             onChange={handleChange}
+            data-testid="input-description"
           />
         </label>
       </div>
@@ -74,6 +76,7 @@ function Form() {
             name="status"
             value={inputTask.status}
             onChange={handleChange}
+            data-testid="input-status"
           >
             {options.map((opt) => (
               <option key={opt} value={opt}>
@@ -88,9 +91,8 @@ function Form() {
         <button
           className="form-task-button-add-expense"
           type="button"
-          onClick={() => {
-            createTaskHandle(inputTask);
-          }}
+          onClick={() => createTaskHandle(inputTask)}
+          data-testid="button-create"
         >
           Adicionar Tarefa
         </button>
@@ -101,9 +103,8 @@ function Form() {
             <button
               className="form-task-button-edit-expense"
               type="button"
-              onClick={() => {
-                updateTaskHandle(inputTask);
-              }}
+              onClick={() => updateTaskHandle(inputTask)}
+              data-testid="button-edit"
             >
               Salvar Tarefa
             </button>
@@ -113,6 +114,7 @@ function Form() {
               className="form-task-button-cancel-expense"
               type="button"
               onClick={cancelOperation}
+              data-testid="button-cancel"
             >
               Cancelar
             </button>
