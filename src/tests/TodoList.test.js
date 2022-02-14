@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 // import axios from 'axios';
 import App from '../App';
@@ -16,5 +16,27 @@ describe('Test if render', () => {
     expect(title).toBeInTheDocument();
     expect(developedBy).toBeInTheDocument();
     expect(zeon).toBeInTheDocument();
+  });
+
+  it('Render the form task', async () => {
+    render(<App />);
+
+    const inputTask = screen.getByTestId('input-task');
+    const inputDescription = screen.getByTestId('input-description');
+    const inputStatus = screen.getByTestId('input-status');
+    const buttonCreate = screen.getByTestId('button-create');
+
+    expect(inputTask).toBeInTheDocument();
+    expect(inputDescription).toBeInTheDocument();
+    expect(inputStatus).toBeInTheDocument();
+    expect(buttonCreate).toBeInTheDocument();
+
+    const taskEditButton = await screen.findAllByTestId('data-button-edit');
+    userEvent.click(taskEditButton[0]);
+    const formEditButton = screen.getByTestId('button-edit');
+    const formCancelButton = screen.getByTestId('button-cancel');
+
+    expect(formEditButton).toBeInTheDocument();
+    expect(formCancelButton).toBeInTheDocument();
   });
 });
