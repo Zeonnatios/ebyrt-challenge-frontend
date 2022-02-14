@@ -102,6 +102,16 @@ function Table() {
     </tbody>
   );
 
+  const renderLoading = () => (
+    <div className="d-flex justify-content-center">
+      <div className="spinner-grow text-primary" role="status" />
+    </div>
+  );
+
+  if (!tasks.length > 0) {
+    return renderLoading();
+  }
+
   return (
     <table className="table">
       {renderThead()}

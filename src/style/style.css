@@ -246,3 +246,8 @@
   cursor: pointer;
   margin-left: 5px;
 }
+
+.spinner-grow {
+  width: 10rem; 
+  height: 10rem;
+}

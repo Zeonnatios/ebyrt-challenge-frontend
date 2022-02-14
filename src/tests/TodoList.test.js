@@ -1,10 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-// import axios from 'axios';
+import axios from 'axios';
 import App from '../App';
-// import { axiosGet, axiosPost, axiosPut } from './MockAxios';
+import { axiosGet, axiosPost, axiosPut } from './MockAxios';
+
+jest.mock('axios');
 
 describe('Test if render', () => {
   it('Render the header', async () => {
