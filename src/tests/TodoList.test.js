@@ -2,11 +2,8 @@ import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import axios from 'axios';
 import App from '../App';
-import { axiosGet, axiosPost, axiosPut } from './MockAxios';
-
-jest.mock('axios');
+// import { axiosGet, axiosPost, axiosPut } from './MockAxios';
 
 describe('Test if render', () => {
   it('Render the header', async () => {
@@ -32,13 +29,38 @@ describe('Test if render', () => {
     expect(inputDescription).toBeInTheDocument();
     expect(inputStatus).toBeInTheDocument();
     expect(buttonCreate).toBeInTheDocument();
+  });
+
+  it('Is possible to create a task', async () => {
+    await act(async () => { render(<App />); });
+    const inputTask = screen.getByTestId('input-task');
+    const inputDescription = screen.getByTestId('input-description');
+    const inputStatus = screen.getByTestId('input-status');
+    const buttonCreate = screen.getByTestId('button-create');
+
+    userEvent.type(inputTask, 'Teste RTL');
+    userEvent.type(inputDescription, 'Teste create Task with RTL');
+    userEvent.selectOptions(inputStatus, 'pendente');
+    userEvent.click(buttonCreate);
+
+    render(<App />);
+
+    const tasks = await screen.findAllByTestId('data-task');
+    expect(tasks[tasks.length - 1]).toHaveTextContent('Teste RTL');
+  });
+
+  it('Is possible to edit a task', async () => {
+    await act(async () => { render(<App />); });
 
     const taskEditButton = await screen.findAllByTestId('data-button-edit');
-    userEvent.click(taskEditButton[0]);
-    const formEditButton = screen.getByTestId('button-edit');
-    const formCancelButton = screen.getByTestId('button-cancel');
+    await userEvent.click(taskEditButton[taskEditButton.length - 1]);
 
+    const inputTask = await screen.findByTestId('input-task');
+    await userEvent.type(inputTask, ' edit');
+    expect(inputTask).toHaveValue('Teste RTL edit');
+
+    const formEditButton = await screen.findByTestId('button-edit');
     expect(formEditButton).toBeInTheDocument();
-    expect(formCancelButton).toBeInTheDocument();
+    await userEvent.click(formEditButton);
   });
 });

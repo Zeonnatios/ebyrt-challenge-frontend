@@ -4,12 +4,6 @@ import Context from './Context';
 import * as tasksAPI from '../services/tasksAPI';
 
 function TasksProvider({ children }) {
-  const [login, setLogin] = useState({ email: '', password: '' });
-  const [register, setRegister] = useState({
-    email: '',
-    password: '',
-    name: '',
-  });
   const [inputTask, setInputTask] = useState({
     task: '',
     description: '',
@@ -90,14 +84,13 @@ function TasksProvider({ children }) {
 
   useEffect(() => {
     getAllTasks();
+    return () => {
+      setTasks([]);
+    };
   }, []);
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const context = {
-    login,
-    setLogin,
-    register,
-    setRegister,
     inputTask,
     setInputTask,
     tasks,
